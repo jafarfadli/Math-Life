@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/geometryquiz.css') }}">
+</head>
+<body>
+    <header class="headerContainer" id="headerPage">
+        <div class="topLeftContainer">
+            <div class="itemContainer">
+                <img class="itemIcon" src="{{url_for('static', filename='assets/user.png')}}">
+                <input type="text" class="itemDisplay" id="usernameDisplay" value="{{name}}" disabled>
+            </div>
+            <div class="itemContainer">
+                <img class="itemIcon" src="{{url_for('static', filename='assets/coin.png')}}">
+                <input type="number" class="itemDisplay" id="coinsDisplay" value="{{coins}}" disabled>
+            </div>
+        </div>
+
+        <div class="titleContainer">
+            <h1 class="title">Kuis Geometri</h1>
+        </div>
+
+        <div class="topRightContainer">
+            <div class="itemContainer">
+                <img class="itemIcon" src="{{url_for('static', filename='assets/ramuanHint.png')}}">
+                <input type="number" class="itemDisplay" id="hintPotionDisplay" value="{{hintPotion}}" disabled>
+            </div>
+            <div class="itemContainer">
+                <img class="itemIcon" src="{{url_for('static', filename='assets/ramuanTool.png')}}">
+                <input type="number" class="itemDisplay" id="toolPotionDisplay" value="{{toolPotion}}" disabled>
+            </div>
+            <div class="itemContainer">
+                <img class="itemIcon" src="{{url_for('static', filename='assets/ramuanNyawa.png')}}">
+                <input type="number" class="itemDisplay" id="lifePotionDisplay" value="{{lifePotion}}" disabled>
+            </div>
+        </div>
+    </header>
+
+    <div class="quizContainer" id="quizContainer">
+        <div class="headerQuizContainer">
+            <div class="wincountContainer">
+                <div class="wincountGrid" id="wincount01"></div>
+                <div class="wincountGrid" id="wincount02"></div>
+                <div class="wincountGrid" id="wincount03"></div>
+            </div>
+            <div class="timeContainer">
+                <img class="clockIcon" src="{{url_for('static', filename='assets/clock.png')}}">
+                <p class="alertText" id="time"></p>
+            </div>
+            <div class="lifecountContainer">
+                <img class="heartIcon" id="life1" src="{{url_for('static', filename='assets/life.png')}}">
+                <img class="heartIcon" id="life2" src="{{url_for('static', filename='assets/life.png')}}">
+                <img class="heartIcon" id="life3" src="{{url_for('static', filename='assets/life.png')}}">
+            </div>
+        </div>
+        <div class="problemQuizContainer">
+            <p class="alertText" id="quizProblem"></p>
+        </div>
+        <div class="answerQuizContainer">
+            <input type="number" class="answerText" id="quizAnswer" placeholder="Answer">
+            <div class="alertButtonContainer">
+                <button class="alertButton" id="quizHintButton">Hint</button>
+                <button class="alertButton" id="quizToolButton">Tool</button>
+                <button class="alertButton" id="quizSkipButton">Skip</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="alertContainer" id="alertContainer1" style="display:none;">
+        <p class="alertText" id="narratorText1"></p>
+        <div class="alertButtonContainer">
+            <button class="alertButton" id="alertNoButton">Tidak</button>
+            <button class="alertButton" id="alertYesButton">Ya</button>
+        </div>
+    </div>
+
+    <div class="alertContainer" id="alertContainer2" style="display:none;">
+        <p class="alertText" id="narratorText2"></p>
+        <div class="alertButtonContainer">
+            <button class="alertButton" id="alertContinueButton">Oke</button>
+        </div>
+    </div>
+
+    <div class="alertContainer" id="quizTool" style="display:none;">
+        <iframe id="geogebraTools" style="display:flex;" width="800" height="600" allowfullscreen style="border: 1px solid #e4e4e4;border-radius: 4px;" frameborder="0"></iframe>
+        <br>
+        <button class="alertButton" id="toolCloseButton">Close</button>
+    </div>
+
+    <form class="alertContainer" id="finishContainer" style="display:none;" action="{{ url_for('geometryquiz') }}" method="POST">
+        <p class="alertText" id="finishText"></p>
+        <br>
+        <input type="number" name="newCoins" id="newCoinsDisplay" style="display:none;">
+        <input type="number" name="newHintPotion" id="newHintPotionDisplay" style="display:none;">
+        <input type="number" name="newToolPotion" id="newToolPotionDisplay" style="display:none;">
+        <input type="number" name="newLifePotion" id="newLifePotionDisplay" style="display:none;">
+        <div class="alertButtonContainer">
+            <input type="submit" class="alertButton" name="finish" value="Selesai">
+        </div>
+    </form>
+
+    <script>
+        const coinsDisplay = document.getElementById('coinsDisplay')
+        const hintPotionDisplay = document.getElementById('hintPotionDisplay')
+        const toolPotionDisplay = document.getElementById('toolPotionDisplay')
+        const lifePotionDisplay = document.getElementById('lifePotionDisplay')
+
+        const newCoinsDisplay = document.getElementById('newCoinsDisplay')
+        const newHintPotionDisplay = document.getElementById('newHintPotionDisplay')
+        const newToolPotionDisplay = document.getElementById('newToolPotionDisplay')
+        const newLifePotionDisplay = document.getElementById('newLifePotionDisplay')
+        
+        const alertContainer1 = document.getElementById('alertContainer1')
+        const narratorText1 = document.getElementById('narratorText1')
+        const alertNoButton = document.getElementById('alertNoButton')
+        const alertYesButton = document.getElementById('alertYesButton')
+
+        const alertContainer2 = document.getElementById('alertContainer2')
+        const narratorText2 = document.getElementById('narratorText2')
+        const alertContinueButton = document.getElementById('alertContinueButton')
+
+        const quizContainer = document.getElementById('quizContainer')
+        const quizHintButton = document.getElementById('quizHintButton')
+        const quizToolButton = document.getElementById('quizToolButton')
+        const quizSkipButton = document.getElementById('quizSkipButton')
+        const quizTool = document.getElementById('quizTool')
+        const toolCloseButton = document.getElementById('toolCloseButton')
+
+        const quizProblem = document.getElementById('quizProblem')
+        const quizAnswer = document.getElementById('quizAnswer')
+        const time = document.getElementById('time')
+
+        const finishContainer = document.getElementById('finishContainer')
+        const finishText = document.getElementById('finishText')
+        const finishButton = document.getElementById('finishButton')
+
+        const geogebraTools = document.getElementById('geogebraTools')
+
+        function life(lifecount){return document.getElementById(`life${lifecount}`)}
+        function wincount0(wincount){return document.getElementById(`wincount0${wincount}`)}
+
+        let coinsValue = Number(coinsDisplay.value)
+        let hintPotionValue = Number(hintPotionDisplay.value)
+        let toolPotionValue = Number(toolPotionDisplay.value)
+        let lifePotionValue = Number(lifePotionDisplay.value)
+
+        newCoinsDisplay.value = coinsValue
+        newHintPotionDisplay.value = hintPotionValue
+        newToolPotionDisplay.value = toolPotionValue
+        newLifePotionDisplay.value = lifePotionValue
+
+        function countdown() { // Timer
+            function tick() {
+                if (quiztime > 0) {
+                    let minutes = Math.floor(quiztime / 60);
+                    let seconds = quiztime % 60;
+                    time.textContent = `${minutes}`.padStart(2, '0') + ':' + `${seconds}`.padStart(2, '0');
+                    quiztime--;
+                    setTimeout(tick, 1000);
+                } else if (quiztime == 0) { // waktu habis
+                    reward = wincount * 15;
+                    coinsValue += reward;
+        
+                    coinsDisplay.value = coinsValue;
+                    newCoinsDisplay.value = coinsValue;
+        
+                    finish(`Waktu habis! Kamu mendapat ${reward} koin`);
+                }
+            }
+            tick();
+        }
+
+        function finish(text){ // Finish Quiz
+            alerted = true
+            finishContainer.style.display='flex';
+            finishText.textContent = text;
+        }
+
+        quizToolButton.onclick = function(){ // Tool
+            alerted = true;
+            if (toolused){
+                quizTool.style.display = 'flex';
+
+                toolCloseButton.onclick = function(){
+                    quizTool.style.display = 'none'; 
+                    alerted = false;              
+                }
+            } else {
+                alertContainer1.style.display='flex';
+                narratorText1.textContent = 'Gunakan Ramuan Tool?';
+
+                alertNoButton.onclick = function(){
+                    alertContainer1.style.display='none';
+                    alerted = false; 
+                }
+                alertYesButton.onclick = function(){
+                    if (toolPotionValue == 0){
+                        alertContainer2.style.display='flex';
+                        narratorText2.textContent = 'Kamu tidak memiliki Ramuan Tool';
+            
+                        alertContinueButton.onclick = function(){
+                            alertContainer2.style.display='none';
+                        }
+                    } else {
+                        toolPotionValue -= 1;
+
+                        toolPotionDisplay.value = toolPotionValue;
+                        newToolPotionDisplay.value = toolPotionValue;
+
+                        alertContainer1.style.display='none';
+                        toolused = true;
+
+                        quizTool.style.display = 'flex';
+
+                        toolCloseButton.onclick = function(){
+                            quizTool.style.display = 'none';    
+                            alerted = false;           
+                        }
+                    }
+                }
+            }
+        }
+
+        quizHintButton.onclick = function(){ // Hint
+            alerted = true;
+            if (hintused){
+                alertContainer2.style.display='flex';
+                narratorText2.textContent = hintText;
+    
+                alertContinueButton.onclick = function(){
+                    alertContainer2.style.display='none';
+                    alerted = false;
+                }
+            } else {
+                alertContainer1.style.display='flex';
+                narratorText1.textContent = 'Gunakan Ramuan Hint?';
+
+                alertNoButton.onclick = function(){
+                    alertContainer1.style.display='none';
+                    alerted = false; 
+                }
+                alertYesButton.onclick = function(){
+                    if (hintPotionValue == 0){
+                        alertContainer2.style.display='flex';
+                        narratorText2.textContent = 'Kamu tidak memiliki Ramuan Hint';
+            
+                        alertContinueButton.onclick = function(){
+                            alertContainer2.style.display='none';
+                        }
+                    } else {
+                        hintPotionValue -= 1;
+
+                        hintPotionDisplay.value = hintPotionValue;
+                        newHintPotionDisplay.value = hintPotionValue;
+
+                        alertContainer1.style.display='none';
+                        hintused = true;
+
+                        alertContainer2.style.display='flex';
+                        narratorText2.textContent = hintText;
+            
+                        alertContinueButton.onclick = function(){
+                            alertContainer2.style.display='none';
+                            alerted = false;
+                        }
+                    }
+                }
+            }
+        }
+
+        quizSkipButton.onclick = function(){ // Skip
+            if (skipcount < 2){
+                skipcount += 1;
+                generateProblem();
+            } else{
+                alertContainer2.style.display='flex';
+                narratorText2.textContent = 'Batas skip telah tercapai';
+    
+                alertContinueButton.onclick = function(){
+                    alertContainer2.style.display='none';
+                }
+            }
+        }
+
+        function generateProblem(){
+            hintused = false;
+            toolused = false;  
+
+            pText = problems[problemID][1];
+            pHint = problems[problemID][2];
+            pTool = problems[problemID][3];
+            pAnswer = problems[problemID][4];
+
+            quizProblem.textContent = pText;
+            hintText = pHint;
+            geogebraTools.src = pTool;
+            problemID += 1;
+        }
+
+        // define problem
+        const problems = {{ problems | tojson }};
+        let problemID = 0;
+
+        let alerted = false;
+        let lifecount = 3; // Nyawa
+        let skipcount = 0; // Jumlah problem yang skipped
+        let wincount = 0; // Jumlah problem yang solved
+        let quiztime = 300; // Waktu
+        let hintText
+
+        let hintused;
+        let toolused;
+        let extralifeused = false;
+
+        countdown();
+        generateProblem();
+        
+        document.onkeydown = checkKey;
+        
+        function checkKey(e) {
+        
+            e = e || window.event;
+        
+            if (e.keyCode == '13' && !(alerted)) {
+                //enter
+                if (Number(quizAnswer.value) == pAnswer){
+                    wincount ++;
+
+                    wincount0(wincount).style.backgroundColor = "rgb(0, 216, 151)";
+
+                    if (wincount == 3){ // lulus
+                        reward = Math.max(Math.floor(quiztime/3),50);
+                        coinsValue += reward;
+
+                        coinsDisplay.value = coinsValue;
+                        newCoinsDisplay.value = coinsValue;
+
+                        finish(`Kamu lulus! Kamu mendapat ${reward} koin`);
+                    } else{
+                        generateProblem();
+                    }
+                } else {
+                    life(lifecount).style.display = 'none';
+                    lifecount --;
+
+                    if (lifecount == 0){
+                        if (!(extralifeused)){
+                            alerted = true;
+                            alertContainer1.style.display='flex';
+                            narratorText1.textContent = "Gunakan Ramuan Nyawa?";
+                    
+                            alertNoButton.onclick = function(){ // nyawa habis
+                                alertContainer1.style.display='none';
+                                reward = wincount*15;
+                                coinsValue += reward;
+
+                                coinsDisplay.value = coinsValue;
+                                newCoinsDisplay.value = coinsValue;
+                
+                                finish(`Nyawa habis! Kamu mendapat ${reward} koin`);
+                            }
+                
+                            alertYesButton.onclick = function(){
+                                if (lifePotionValue == 0){
+                                    alertContainer2.style.display='flex';
+                                    narratorText2.textContent = 'Kamu tidak memiliki Ramuan Nyawa';
+                        
+                                    alertContinueButton.onclick = function(){
+                                        alertContainer2.style.display='none';
+                                    }
+                                } else {
+                                    alertContainer1.style.display='none';
+                                    alerted = false;
+                
+                                    lifecount ++;
+                                    life(lifecount).style.display = 'flex';
+
+                                    lifePotionValue --;
+
+                                    lifePotionDisplay.value = lifePotionValue;
+                                    newLifePotionDisplay.value = lifePotionValue;
+                                }
+                            }
+                        } else {
+                            alertContainer1.style.display='none';
+                            reward = wincount*15;
+                            coinsValue += reward;
+
+                            coinsDisplay.value = coinsValue;
+                            newCoinsDisplay.value = coinsValue;
+            
+                            finish(`Nyawa habis! Kamu mendapat ${reward} koin`);
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

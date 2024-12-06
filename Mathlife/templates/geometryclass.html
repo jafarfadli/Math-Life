@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courgette&family=Lobster&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Press+Start+2P&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/geometryclass.css') }}">
+</head>
+<body>
+    <header class="headerContainer" id="headerPage">
+        <div class="topLeftContainer">
+            <div class="itemContainer">
+                <img class="itemIcon" src="{{url_for('static', filename='assets/user.png')}}">
+                <input type="text" class="itemDisplay" id="usernameDisplay" value="{{name}}" disabled>
+            </div>
+            <div class="itemContainer">
+                <img class="itemIcon" src="{{url_for('static', filename='assets/coin.png')}}">
+                <input type="number" class="itemDisplay" id="coinsDisplay" value="{{coins}}" disabled>
+            </div>
+        </div>
+
+        <div class="titleContainer">
+            <h1 class="title">Kelas Geometri</h1>
+        </div>
+
+        <div class="topRightContainer">
+            <div class="itemContainer">
+                <img class="itemIcon" src="{{url_for('static', filename='assets/ramuanHint.png')}}">
+                <input type="number" class="itemDisplay" id="hintPotionDisplay" value="{{hintPotion}}" disabled>
+            </div>
+            <div class="itemContainer">
+                <img class="itemIcon" src="{{url_for('static', filename='assets/ramuanTool.png')}}">
+                <input type="number" class="itemDisplay" id="toolPotionDisplay" value="{{toolPotion}}" disabled>
+            </div>
+            <div class="itemContainer">
+                <img class="itemIcon" src="{{url_for('static', filename='assets/ramuanNyawa.png')}}">
+                <input type="number" class="itemDisplay" id="lifePotionDisplay" value="{{lifePotion}}" disabled>
+            </div>
+        </div>
+    </header>
+
+    <div class="mapContainer">
+        <div class="mapGrid cornerGrid" id="grid11"></div>
+        <div class="mapGrid leftGrid" id="grid12"></div>
+        <div class="mapGrid leftGrid" id="grid13"></div>
+        <div class="mapGrid leftGrid" id="grid14"></div>
+        <div class="mapGrid leftGrid" id="grid15"></div>
+        <div class="mapGrid leftGrid" id="grid16"></div>
+        <div class="mapGrid leftGrid" id="grid17"></div>
+        <div class="mapGrid leftGrid" id="grid18"></div>
+        <div class="mapGrid cornerGrid" id="grid19"></div>
+
+        <div class="mapGrid topGrid" id="grid21"></div>
+        <div class="mapGrid" id="grid22"></div>
+        <div class="mapGrid" id="grid23"></div>
+        <div class="mapGrid" id="grid24"><img class="avatar" id="avt24" style="display:none;" src="{{url_for('static', filename='assets/avatar.png')}}"></div>
+        <div class="mapGrid" id="grid25"></div>
+        <div class="mapGrid" id="grid26"></div>
+        <div class="mapGrid" id="grid27"></div>
+        <div class="mapGrid" id="grid28"><img class="avatar" id="avt28" style="display:none;" src="{{url_for('static', filename='assets/avatar.png')}}"></div>
+        <div class="mapGrid bottomGrid" id="grid29"></div>
+
+        <div class="mapGrid topGrid" id="grid31"></div>
+        <div class="mapGrid" id="grid32"><img class="teacher" src="{{url_for('static', filename='assets/teacher.png')}}"></div>
+        <div class="mapGrid interactiveObj" id="grid33"><img class="teacherDesk" src="{{url_for('static', filename='assets/teacherDesk.png')}}"></div>
+        <div class="mapGrid" id="grid34"><img class="avatar" id="avt34" style="display:none;" src="{{url_for('static', filename='assets/avatar.png')}}"></div>
+        <div class="mapGrid" id="grid35"><img class="desk" src="{{url_for('static', filename='assets/desk.png')}}"></div>
+        <div class="mapGrid" id="grid36"><img class="desk" src="{{url_for('static', filename='assets/desk.png')}}"></div>
+        <div class="mapGrid" id="grid37"><img class="desk" src="{{url_for('static', filename='assets/desk.png')}}"></div>
+        <div class="mapGrid" id="grid38"><img class="avatar" id="avt38" style="display:none;" src="{{url_for('static', filename='assets/avatar.png')}}"></div>
+        <div class="mapGrid bottomGrid" id="grid39"></div>
+
+        <div class="mapGrid topGrid" id="grid41"></div>
+        <div class="mapGrid" id="grid42"></div>
+        <div class="mapGrid" id="grid43"></div>
+        <div class="mapGrid" id="grid44"><img class="avatar" id="avt44" style="display:none;" src="{{url_for('static', filename='assets/avatar.png')}}"></div>
+        <div class="mapGrid" id="grid45"></div>
+        <div class="mapGrid" id="grid46"></div>
+        <div class="mapGrid" id="grid47"></div>
+        <div class="mapGrid" id="grid48"><img class="avatar" id="avt48" style="display:none;" src="{{url_for('static', filename='assets/avatar.png')}}"></div>
+        <div class="mapGrid bottomGrid" id="grid49"></div>
+
+        <div class="mapGrid topGrid" id="grid51"><img class="blackboard" src="{{url_for('static', filename='assets/blackboard.jpeg')}}"></div>
+        <div class="mapGrid" id="grid52"></div>
+        <div class="mapGrid" id="grid53"></div>
+        <div class="mapGrid" id="grid54"><img class="avatar" id="avt54" style="display:none;" src="{{url_for('static', filename='assets/avatar.png')}}"></div>
+        <div class="mapGrid" id="grid55"><img class="avatar" id="avt55" style="display:none;" src="{{url_for('static', filename='assets/avatar.png')}}"></div>
+        <div class="mapGrid" id="grid56"><img class="avatar" id="avt56" style="display:none;" src="{{url_for('static', filename='assets/avatar.png')}}"></div>
+        <div class="mapGrid" id="grid57"><img class="avatar" id="avt57" style="display:none;" src="{{url_for('static', filename='assets/avatar.png')}}"></div>
+        <div class="mapGrid" id="grid58"><img class="avatar" id="avt58" style="display:none;" src="{{url_for('static', filename='assets/avatar.png')}}"></div>
+        <div class="mapGrid bottomGrid doors interactiveObj" id="grid59"><img class="lskelasIcon" src="{{url_for('static', filename='assets/R6.png')}}"></div>
+
+        <div class="mapGrid topGrid" id="grid61"></div>
+        <div class="mapGrid" id="grid62"></div>
+        <div class="mapGrid" id="grid63"></div>
+        <div class="mapGrid" id="grid64"><img class="avatar" id="avt64" style="display:none;" src="{{url_for('static', filename='assets/avatar.png')}}"></div>
+        <div class="mapGrid" id="grid65"></div>
+        <div class="mapGrid" id="grid66"></div>
+        <div class="mapGrid" id="grid67"></div>
+        <div class="mapGrid" id="grid68"><img class="avatar" id="avt68" style="display:none;" src="{{url_for('static', filename='assets/avatar.png')}}"></div>
+        <div class="mapGrid bottomGrid" id="grid69"></div>
+
+        <div class="mapGrid topGrid" id="grid71"></div>
+        <div class="mapGrid" id="grid72"><img class="bookshelf" src="{{url_for('static', filename='assets/bookshelf2.png')}}"></div>
+        <div class="mapGrid" id="grid73"></div>
+        <div class="mapGrid" id="grid74"><img class="avatar" id="avt74" style="display:none;" src="{{url_for('static', filename='assets/avatar.png')}}"></div>
+        <div class="mapGrid" id="grid75"><img class="desk" src="{{url_for('static', filename='assets/desk.png')}}"></div>
+        <div class="mapGrid" id="grid76"><img class="desk" src="{{url_for('static', filename='assets/desk.png')}}"></div>
+        <div class="mapGrid" id="grid77"><img class="desk" src="{{url_for('static', filename='assets/desk.png')}}"></div>
+        <div class="mapGrid" id="grid78"><img class="avatar" id="avt78" style="display:none;" src="{{url_for('static', filename='assets/avatar.png')}}"></div>
+        <div class="mapGrid bottomGrid" id="grid79"></div>
+            
+        <div class="mapGrid topGrid" id="grid81"></div>
+        <div class="mapGrid" id="grid82"></div>
+        <div class="mapGrid" id="grid83"></div>
+        <div class="mapGrid" id="grid84"><img class="avatar" id="avt84" style="display:none;" src="{{url_for('static', filename='assets/avatar.png')}}"></div>
+        <div class="mapGrid" id="grid85"></div>
+        <div class="mapGrid" id="grid86"></div>
+        <div class="mapGrid" id="grid87"></div>
+        <div class="mapGrid" id="grid88"><img class="avatar" id="avt88" style="display:none;" src="{{url_for('static', filename='assets/avatar.png')}}"></div>
+        <div class="mapGrid bottomGrid" id="grid89"></div>
+        
+        <div class="mapGrid cornerGrid" id="grid91"></div>
+        <div class="mapGrid rightGrid" id="grid92"></div>
+        <div class="mapGrid rightGrid" id="grid93"></div>
+        <div class="mapGrid rightGrid" id="grid94"></div>
+        <div class="mapGrid rightGrid" id="grid95"></div>
+        <div class="mapGrid rightGrid" id="grid96"></div>
+        <div class="mapGrid rightGrid" id="grid97"></div>
+        <div class="mapGrid rightGrid" id="grid98"></div>
+        <div class="mapGrid cornerGrid" id="grid99"></div>
+    </div>
+
+    <div class="alertContainer" id="alertContainer1" style="display:none;">
+        <p class="alertText" id="narratorText1"></p>
+        <div class="alertButtonContainer">
+            <button class="alertButton" id="alertNoButton">Tidak</button>
+            <button class="alertButton" id="alertYesButton">Ya</button>
+        </div>
+    </div>
+
+    <form class="alertContainer" id="insertGeoContainer" style="display:none;" action="{{ url_for('geometryclass') }}" method="POST">
+        <p class="alertText">Tambah Soal Geometri</p>
+        <input type="text" name="problemText" id="problemText" class="insertGeoText" placeholder="Soal" required>
+        <input type="text" name="problemHint" id="problemHint" class="insertGeoText" placeholder="Hint" required>
+        <input type="text" name="problemTool" id="problemTool" class="insertGeoText" placeholder="Tool" required>
+        <input type="text" name="problemAnswer" id="problemAnswer" class="insertGeoText" placeholder="Jawaban" required>
+        <div class="alertButtonContainer">
+            <button class="alertButton" id="alertCancelButton">Batal</button>
+            <input type="submit" class="alertButton" id="alertSendButton" value="Kirim" name="insertGeo">
+        </div>
+    </form>
+
+    <script>
+        const usernameDisplay = document.getElementById('usernameDisplay')
+
+        const alertContainer1 = document.getElementById('alertContainer1')
+        const narratorText1 = document.getElementById('narratorText1')
+        const alertNoButton = document.getElementById('alertNoButton')
+        const alertYesButton = document.getElementById('alertYesButton')
+
+        const insertGeoContainer = document.getElementById('insertGeoContainer')
+        const problemText = document.getElementById('problemText')
+        const problemHint = document.getElementById('problemHint')
+        const problemTool = document.getElementById('problemTool')
+        const problemAnswer = document.getElementById('problemAnswer')
+        const alertSendButton = document.getElementById('alertSendButton')
+        const alertCancelButton = document.getElementById('alertCancelButton')
+
+        function avt(a,b){
+            return document.getElementById(`avt${a}${b}`);
+        }
+
+        function alert1(text,link){
+            alerted = true;
+            alertContainer1.style.display='flex';
+            narratorText1.textContent = text;
+
+            alertNoButton.onclick = function(){
+                alertContainer1.style.display='none';
+                alerted = false;
+            }
+            alertYesButton.onclick = function(){
+                window.location.href = link
+            }
+        }
+
+        function insertGeo(){
+            alerted = true
+            insertGeoContainer.style.display='flex';
+
+            alertCancelButton.onclick = function(){
+                problemText.value = '';
+                problemHint.value = '';
+                problemTool.value = '';
+                problemAnswer.value = '';
+                insertGeoContainer.style.display='none';
+                alerted = false;
+            }
+        }
+
+        let alerted = false
+        let position_x = 5;
+        let position_y = 5;
+        avt(position_x,position_y).style.display='block';
+
+        document.onkeydown = checkKey;
+
+        function checkKey(e) {
+
+            e = e || window.event;
+
+            if (e.keyCode == '38' && !(alerted)) {
+                // up arrow
+                if (position_x == 3 && position_y == 4){
+                    if (usernameDisplay.value == 'kepsek'){
+                        insertGeo();
+                    } else {
+                        alert1('Mulai Kuis?','geometryquiz');
+                    }
+                } else if (position_x != 5 && position_y == 8){
+
+                } else if (position_y != 4){
+                    avt(position_x,position_y).style.display='none';
+                    position_y -= 1;
+                    avt(position_x,position_y).style.display='block';
+                }
+
+            } else if (e.keyCode == '40' && !(alerted)) {
+                // down arrow
+                if (position_x == 5 && position_y == 8){
+                    alert1('Masuk Lobi Sekolah?','homepage');
+                } else if (position_x != 5 && position_y == 4){
+
+                } else if (position_y != 8){
+                    avt(position_x,position_y).style.display='none';
+                    position_y += 1;
+                    avt(position_x,position_y).style.display='block';
+                }
+
+            } else if (e.keyCode == '37' && !(alerted)) {
+                // left arrow
+                if (position_x == 5 && position_y >= 5 && position_y < 8){
+
+                } else if (position_x != 2){
+                    avt(position_x,position_y).style.display='none';
+                    position_x -= 1;
+                    avt(position_x,position_y).style.display='block';
+                }
+
+            }
+            else if (e.keyCode == '39' && !(alerted)){
+                // right arrow
+                if (position_x == 5 && position_y >= 5 && position_y < 8){
+
+                } else if (position_x != 8){
+                    avt(position_x,position_y).style.display='none';
+                    position_x += 1;
+                    avt(position_x,position_y).style.display='block';
+                }
+            }
+        }
+    </script>
+</body>
+</html>

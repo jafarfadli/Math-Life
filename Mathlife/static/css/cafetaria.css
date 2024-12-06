@@ -1,0 +1,253 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+/* header */
+.headerContainer{
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+	background-image: url(../assets/darkwoodbg.jpg);
+    background-color: #fff;
+  	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+			0 10px 10px rgba(0,0,0,0.22);
+}
+.itemContainer{
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    border-style: inherit;
+    border-radius: 20px;
+}
+.topLeftContainer{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    margin: 10px;
+    margin-right: auto;
+}
+.topRightContainer{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    margin: 10px;
+    margin-left: auto;
+}
+.itemIcon{
+    width: 60px;
+}
+.lskantinIcon{
+    height: 40px;
+    transform: translate(10%, 0%);
+}
+.itemDisplay{
+    font-size: 2em;
+    color: black;
+    width: 2em;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+}
+#coinsDisplay{
+    font-size: 2em;
+    color: black;
+    width: 4em;
+}
+#usernameDisplay{
+    font-size: 2em;
+    color: black;
+    width: 4em;
+}
+.titleContainer{
+    position:absolute;
+    left: 50%;
+    top: 20px;
+    transform: translate(-50%, 0%);
+}
+h1 {
+    font-weight: bold;
+	margin: 0;
+}
+.title{
+    color: white;
+}
+
+
+
+/* map */
+.mapContainer{
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: 60px 60px 60px 60px 60px 60px 60px 60px 60px;
+    grid-template-columns: 30px 60px 60px 60px 60px 60px 60px 60px 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-image: url(../assets/darkwoodbg.jpg);
+}
+.mapGrid{ 
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+}
+.cornerGrid{
+    width: 30px;
+    height: 60px;  
+    background-image: url(../assets/wall.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.leftGrid{
+    width: 30px;
+    height: 60px;
+    background-image: url(../assets/wall.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.rightGrid{
+    width: 30px;
+    height: 60px;
+    background-image: url(../assets/wall.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.topGrid{
+    width: 60px;
+    height: 60px;
+    background-image: url(../assets/wall.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.bottomGrid{
+    width: 60px;
+    height: 60px;
+    background-image: url(../assets/wall.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.doors{
+    background-image: none;
+    background-color: rgb(75, 40, 15);
+}
+.window{
+    height: 60px;
+    z-index: 1;
+}
+.avatar{
+    position: absolute;
+    height: 80px;
+    transform: translate(0%, -25%);
+    z-index: 1;
+}
+.wizard{
+    position: absolute;
+    height: 150px;
+    transform: translate(-15%, -25%);
+}
+
+.interactiveObj:hover::after{
+	background-color: #fff;
+	border-radius: 10px;
+  	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+			0 10px 10px rgba(0,0,0,0.22);
+	position: absolute;
+
+    width: 150px;
+    height: fit-content;
+
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(75, 40, 15);
+    text-align: center;
+    padding: 10px;
+    z-index: 2;
+}
+#grid15:hover::after{
+    content: "Lobi Sekolah";
+}
+#grid75:hover::after{
+    content: "Penyihir";
+}
+.table{
+    height: 100px;
+}
+.cauldron{
+    height: 100px;
+    z-index: 1;
+}
+.wall{
+    height: 60px;
+}
+
+
+/* shop */
+.shopContainer{
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(3,1fr);
+    grid-template-columns: repeat(2,1fr);
+}
+.shopSubmitContainer{
+    display: flex;
+    flex-direction: column;
+}
+.shopGrid{
+    height: 60px;   
+    border-style: inherit;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+}
+
+/* narrator */
+.alertContainer{
+	background-color: #fff;
+	border-radius: 10px;
+  	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+			0 10px 10px rgba(0,0,0,0.22);
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+	width: 300px;
+    padding: 10px;
+	height: fit-content;
+    flex-direction: column;
+}
+.alertButtonContainer{
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-top: 10px;
+}
+.alertButton{
+	border-style: inherit;
+	border-radius: 20px;
+	background-image: url(../assets/darkwoodbg.jpg);
+	color: #FFFFFF;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 12px 45px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+}
+.alertText{
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(75, 40, 15);
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.text{
+    font-family:"poppins",sans-serif;
+    color: white;
+}
+
+body {
+	background: #f6f5f7;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+}

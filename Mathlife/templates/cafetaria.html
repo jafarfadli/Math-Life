@@ -1,0 +1,409 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courgette&family=Lobster&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Press+Start+2P&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{url_for('static', filename='css/cafetaria.css')}}">
+</head>
+<body>
+    <header class="headerContainer" id="headerPage">
+        <div class="topLeftContainer">
+            <div class="itemContainer">
+                <img class="itemIcon" src="{{url_for('static', filename='assets/user.png')}}">
+                <input type="text" class="itemDisplay" id="usernameDisplay" value="{{name}}" disabled>
+            </div>
+            <div class="itemContainer">
+                <img class="itemIcon" src="{{url_for('static', filename='assets/coin.png')}}">
+                <input type="number" class="itemDisplay" id="coinsDisplay" value="{{coins}}" disabled>
+            </div>
+        </div>
+
+        <div class="titleContainer">
+            <h1 class="title">Kantin</h1>
+        </div>
+
+        <div class="topRightContainer">
+            <div class="itemContainer">
+                <img class="itemIcon" src="{{url_for('static', filename='assets/ramuanHint.png')}}">
+                <input type="number" class="itemDisplay" id="hintPotionDisplay" value="{{hintPotion}}" disabled>
+            </div>
+            <div class="itemContainer">
+                <img class="itemIcon" src="{{url_for('static', filename='assets/ramuanTool.png')}}">
+                <input type="number" class="itemDisplay" id="toolPotionDisplay" value="{{toolPotion}}" disabled>
+            </div>
+            <div class="itemContainer">
+                <img class="itemIcon" src="{{url_for('static', filename='assets/ramuanNyawa.png')}}">
+                <input type="number" class="itemDisplay" id="lifePotionDisplay" value="{{lifePotion}}" disabled>
+            </div>
+        </div>
+    </header>
+
+    <div class="mapContainer">
+        <div class="mapGrid cornerGrid" id="grid11"></div>
+        <div class="mapGrid leftGrid" id="grid12"></div>
+        <div class="mapGrid leftGrid" id="grid13"></div>
+        <div class="mapGrid leftGrid" id="grid14"></div>
+        <div class="mapGrid leftGrid doors interactiveObj" id="grid15"><img class="lskantinIcon" src="{{url_for('static', filename='assets/R6.png')}}"></div>
+        <div class="mapGrid leftGrid" id="grid16"></div>
+        <div class="mapGrid leftGrid" id="grid17"></div>
+        <div class="mapGrid leftGrid" id="grid18"></div>
+        <div class="mapGrid cornerGrid" id="grid19"></div>
+
+        <div class="mapGrid topGrid" id="grid21"></div>
+        <div class="mapGrid" id="grid22"><img class="avatar" id="avt22" style="display:none;" src="{{url_for('static', filename='assets/avatar.png')}}"></div>
+        <div class="mapGrid" id="grid23"><img class="avatar" id="avt23" style="display:none;" src="{{url_for('static', filename='assets/avatar.png')}}"></div>
+        <div class="mapGrid" id="grid24"><img class="avatar" id="avt24" style="display:none;" src="{{url_for('static', filename='assets/avatar.png')}}"></div>
+        <div class="mapGrid" id="grid25"><img class="avatar" id="avt25" style="display:none;" src="{{url_for('static', filename='assets/avatar.png')}}"></div>
+        <div class="mapGrid" id="grid26"><img class="avatar" id="avt26" style="display:none;" src="{{url_for('static', filename='assets/avatar.png')}}"></div>
+        <div class="mapGrid" id="grid27"><img class="avatar" id="avt27" style="display:none;" src="{{url_for('static', filename='assets/avatar.png')}}"></div>
+        <div class="mapGrid" id="grid28"><img class="avatar" id="avt28" style="display:none;" src="{{url_for('static', filename='assets/avatar.png')}}"></div>
+        <div class="mapGrid bottomGrid" id="grid29"></div>
+
+        <div class="mapGrid topGrid" id="grid31"></div>
+        <div class="mapGrid" id="grid32"><img class="avatar" id="avt32" style="display:none;" src="{{url_for('static', filename='assets/avatar.png')}}"></div>
+        <div class="mapGrid" id="grid33"><img class="table" src="{{url_for('static', filename='assets/cafeTable.png')}}"></div>
+        <div class="mapGrid" id="grid34"><img class="avatar" id="avt34" style="display:none;" src="{{url_for('static', filename='assets/avatar.png')}}"></div>
+        <div class="mapGrid" id="grid35"><img class="avatar" id="avt35" style="display:none;" src="{{url_for('static', filename='assets/avatar.png')}}"></div>
+        <div class="mapGrid" id="grid36"><img class="avatar" id="avt36" style="display:none;" src="{{url_for('static', filename='assets/avatar.png')}}"></div>
+        <div class="mapGrid" id="grid37"><img class="table" src="{{url_for('static', filename='assets/cafeTable.png')}}"></div>
+        <div class="mapGrid" id="grid38"><img class="avatar" id="avt38" style="display:none;" src="{{url_for('static', filename='assets/avatar.png')}}"></div>
+        <div class="mapGrid bottomGrid" id="grid39"><img class="window" src="{{url_for('static', filename='assets/window.png')}}"></div>
+
+        <div class="mapGrid topGrid" id="grid41"></div>
+        <div class="mapGrid" id="grid42"><img class="avatar" id="avt42" style="display:none;" src="{{url_for('static', filename='assets/avatar.png')}}"></div>
+        <div class="mapGrid" id="grid43"><img class="avatar" id="avt43" style="display:none;" src="{{url_for('static', filename='assets/avatar.png')}}"></div>
+        <div class="mapGrid" id="grid44"><img class="avatar" id="avt44" style="display:none;" src="{{url_for('static', filename='assets/avatar.png')}}"></div>
+        <div class="mapGrid" id="grid45"><img class="avatar" id="avt45" style="display:none;" src="{{url_for('static', filename='assets/avatar.png')}}"></div>
+        <div class="mapGrid" id="grid46"><img class="avatar" id="avt46" style="display:none;" src="{{url_for('static', filename='assets/avatar.png')}}"></div>
+        <div class="mapGrid" id="grid47"><img class="avatar" id="avt47" style="display:none;" src="{{url_for('static', filename='assets/avatar.png')}}"></div>
+        <div class="mapGrid" id="grid48"><img class="avatar" id="avt48" style="display:none;" src="{{url_for('static', filename='assets/avatar.png')}}"></div>
+        <div class="mapGrid bottomGrid" id="grid49"></div>
+
+        <div class="mapGrid topGrid" id="grid51"></div>
+        <div class="mapGrid" id="grid52"><img class="avatar" id="avt52" style="display:none;" src="{{url_for('static', filename='assets/avatar.png')}}"></div>
+        <div class="mapGrid" id="grid53"><img class="table" src="{{url_for('static', filename='assets/cafeTable.png')}}"></div>
+        <div class="mapGrid" id="grid54"><img class="avatar" id="avt54" style="display:none;" src="{{url_for('static', filename='assets/avatar.png')}}"></div>
+        <div class="mapGrid" id="grid55"><img class="avatar" id="avt55" style="display:none;" src="{{url_for('static', filename='assets/avatar.png')}}"></div>
+        <div class="mapGrid" id="grid56"><img class="avatar" id="avt56" style="display:none;" src="{{url_for('static', filename='assets/avatar.png')}}"></div>
+        <div class="mapGrid" id="grid57"><img class="table" src="{{url_for('static', filename='assets/cafeTable.png')}}"></div>
+        <div class="mapGrid" id="grid58"><img class="avatar" id="avt58" style="display:none;" src="{{url_for('static', filename='assets/avatar.png')}}"></div>
+        <div class="mapGrid bottomGrid" id="grid59"><img class="window" src="{{url_for('static', filename='assets/window.png')}}"></div>
+
+        <div class="mapGrid topGrid" id="grid61"></div>
+        <div class="mapGrid" id="grid62"><img class="avatar" id="avt62" style="display:none;" src="{{url_for('static', filename='assets/avatar.png')}}"></div>
+        <div class="mapGrid" id="grid63"><img class="avatar" id="avt63" style="display:none;" src="{{url_for('static', filename='assets/avatar.png')}}"></div>
+        <div class="mapGrid" id="grid64"><img class="avatar" id="avt64" style="display:none;" src="{{url_for('static', filename='assets/avatar.png')}}"></div>
+        <div class="mapGrid" id="grid65"><img class="avatar" id="avt65" style="display:none;" src="{{url_for('static', filename='assets/avatar.png')}}"></div>
+        <div class="mapGrid" id="grid66"><img class="avatar" id="avt66" style="display:none;" src="{{url_for('static', filename='assets/avatar.png')}}"></div>
+        <div class="mapGrid" id="grid67"><img class="avatar" id="avt67" style="display:none;" src="{{url_for('static', filename='assets/avatar.png')}}"></div>
+        <div class="mapGrid" id="grid68"><img class="avatar" id="avt68" style="display:none;" src="{{url_for('static', filename='assets/avatar.png')}}"></div>
+        <div class="mapGrid bottomGrid" id="grid69"></div>
+
+        <div class="mapGrid topGrid" id="grid71"></div>
+        <div class="mapGrid" id="grid72"></div>
+        <div class="mapGrid" id="grid73"></div>
+        <div class="mapGrid" id="grid74"></div>
+        <div class="mapGrid interactiveObj" id="grid75"><img class="cauldron" src="{{url_for('static', filename='assets/cauldron.png')}}"></div>
+        <div class="mapGrid" id="grid76"></div>
+        <div class="mapGrid" id="grid77"></div>
+        <div class="mapGrid" id="grid78"></div>
+        <div class="mapGrid bottomGrid" id="grid79"><img class="window" src="{{url_for('static', filename='assets/window.png')}}"></div>
+            
+        <div class="mapGrid topGrid" id="grid81"></div>
+        <div class="mapGrid" id="grid82"></div>
+        <div class="mapGrid" id="grid83"></div>
+        <div class="mapGrid" id="grid84"></div>
+        <div class="mapGrid" id="grid85"><img class="wizard" id="avt85" src="{{url_for('static', filename='assets/wizard.png')}}"></div>
+        <div class="mapGrid" id="grid86"></div>
+        <div class="mapGrid" id="grid87"></div>
+        <div class="mapGrid" id="grid88"></div>
+        <div class="mapGrid bottomGrid" id="grid89"></div>
+        
+        <div class="mapGrid cornerGrid" id="grid91"></div>
+        <div class="mapGrid rightGrid" id="grid92"></div>
+        <div class="mapGrid rightGrid" id="grid93"></div>
+        <div class="mapGrid rightGrid" id="grid94"></div>
+        <div class="mapGrid rightGrid" id="grid95"></div>
+        <div class="mapGrid rightGrid" id="grid96"></div>
+        <div class="mapGrid rightGrid" id="grid97"></div>
+        <div class="mapGrid rightGrid" id="grid98"></div>
+        <div class="mapGrid cornerGrid" id="grid99"></div>
+    </div>
+
+    <div class="alertContainer" id="shopContainer" style="display:none;">
+        <p class="alertText">Penyihir</p>
+        <div class="shopContainer" id="userShopContainer">
+            <div class="shopGrid" id="sgrid11"><img class="itemIcon" src="{{url_for('static', filename='assets/ramuanHint.png')}}"></div>
+            <div class="shopGrid" id="sgrid12"><img class="itemIcon" src="{{url_for('static', filename='assets/ramuanTool.png')}}"></div>
+            <div class="shopGrid" id="sgrid13"><img class="itemIcon" src="{{url_for('static', filename='assets/ramuanNyawa.png')}}"></div>
+
+            <div class="shopGrid" id="sgrid21"><button class="alertButton" id="buyHintPotion"></button></div>
+            <div class="shopGrid" id="sgrid22"><button class="alertButton" id="buyToolPotion"></button></div>
+            <div class="shopGrid" id="sgrid33"><button class="alertButton" id="buyLifePotion"></button></div>
+        </div>
+        <form class="shopSubmitContainer" action="{{ url_for('cafetaria') }}" method="POST">
+            <div class="shopContainer" id="updateShopContainer">
+                <div class="shopGrid"><img class="itemIcon" src="{{url_for('static', filename='assets/ramuanHint.png')}}"></div>
+                <div class="shopGrid"><img class="itemIcon" src="{{url_for('static', filename='assets/ramuanTool.png')}}"></div>
+                <div class="shopGrid"><img class="itemIcon" src="{{url_for('static', filename='assets/ramuanNyawa.png')}}"></div>
+    
+                <div class="shopGrid"><input type="number" name="newHintPotionPrice" class="alertText" id="newHintPotionPrice"></div>
+                <div class="shopGrid"><input type="number" name="newToolPotionPrice" class="alertText" id="newToolPotionPrice"></div>
+                <div class="shopGrid"><input type="number" name="newLifePotionPrice" class="alertText" id="newLifePotionPrice"></div>
+            </div>
+            <input type="number" name="newCoins" id="newCoinsDisplay" style="display:none;">
+            <input type="number" name="newHintPotion" id="newHintPotionDisplay" style="display:none;">
+            <input type="number" name="newToolPotion" id="newToolPotionDisplay" style="display:none;">
+            <input type="number" name="newLifePotion" id="newLifePotionDisplay" style="display:none;">
+            <div class="alertButtonContainer">
+                <input type="submit" class="alertButton" name="shop" value="Selesai">
+            </div>
+        </form>
+    </div>
+
+    <div class="alertContainer" id="alertContainer1" style="display:none;">
+        <p class="alertText" id="narratorText1"></p>
+        <div class="alertButtonContainer">
+            <button class="alertButton" id="alertNoButton">Tidak</button>
+            <button class="alertButton" id="alertYesButton">Ya</button>
+        </div>
+    </div>
+
+    <div class="alertContainer" id="alertContainer2" style="display:none;">
+        <p class="alertText" id="narratorText2"></p>
+        <button class="alertButton" id="alertContinueButton">Oke</button>
+    </div>
+
+    <script>
+        const usernameDisplay = document.getElementById('usernameDisplay')
+
+        const coinsDisplay = document.getElementById('coinsDisplay')
+        const hintPotionDisplay = document.getElementById('hintPotionDisplay')
+        const toolPotionDisplay = document.getElementById('toolPotionDisplay')
+        const lifePotionDisplay = document.getElementById('lifePotionDisplay')
+
+        const newCoinsDisplay = document.getElementById('newCoinsDisplay')
+        const newHintPotionDisplay = document.getElementById('newHintPotionDisplay')
+        const newToolPotionDisplay = document.getElementById('newToolPotionDisplay')
+        const newLifePotionDisplay = document.getElementById('newLifePotionDisplay')
+        const newHintPotionPrice = document.getElementById('newHintPotionPrice')
+        const newToolPotionPrice = document.getElementById('newToolPotionPrice')
+        const newLifePotionPrice = document.getElementById('newLifePotionPrice')
+
+        const alertContainer1 = document.getElementById('alertContainer1')
+        const narratorText1 = document.getElementById('narratorText1')
+        const alertNoButton = document.getElementById('alertNoButton')
+        const alertYesButton = document.getElementById('alertYesButton')
+
+        const alertContainer2 = document.getElementById('alertContainer2')
+        const narratorText2 = document.getElementById('narratorText2')
+        const alertContinueButton = document.getElementById('alertContinueButton')
+
+        const shopContainer = document.getElementById('shopContainer')
+        const buyHintPotion = document.getElementById('buyHintPotion')
+        const buyToolPotion = document.getElementById('buyToolPotion')
+        const buyLifePotion = document.getElementById('buyLifePotion')
+        const userShopContainer = document.getElementById('userShopContainer')
+        const updateShopContainer = document.getElementById('updateShopContainer')
+
+        const shop_price = {{ shop_price | tojson }}
+
+        let coinsValue = Number(coinsDisplay.value)
+        let hintPotionValue = Number(hintPotionDisplay.value)
+        let toolPotionValue = Number(toolPotionDisplay.value)
+        let lifePotionValue = Number(lifePotionDisplay.value)
+        let hintPotionPrice = shop_price[0]
+        let toolPotionPrice = shop_price[1]
+        let lifePotionPrice = shop_price[2]
+
+        newCoinsDisplay.value = coinsValue
+        newHintPotionDisplay.value = hintPotionValue
+        newToolPotionDisplay.value = toolPotionValue
+        newLifePotionDisplay.value = lifePotionValue
+        newHintPotionPrice.value = hintPotionPrice
+        newToolPotionPrice.value = toolPotionPrice
+        newLifePotionPrice.value = lifePotionPrice
+
+        buyHintPotion.textContent = `beli $${hintPotionPrice}`
+        buyToolPotion.textContent = `beli $${toolPotionPrice}`
+        buyLifePotion.textContent = `beli $${lifePotionPrice}`
+
+        function avt(a,b){
+            return document.getElementById(`avt${a}${b}`);
+        }
+
+        function alert1(text,link){
+            alerted = true;
+            alertContainer1.style.display='flex';
+            narratorText1.textContent = text;
+
+            alertNoButton.onclick = function(){
+                alertContainer1.style.display='none';
+                alerted = false;
+            }
+            alertYesButton.onclick = function(){
+                window.location.href = link
+            }
+        }
+
+        function alert2(text){
+            alerted = true;
+            alertContainer2.style.display='flex';
+            narratorText2.textContent = text;
+
+            alertContinueButton.onclick = function(){
+                alertContainer2.style.display='none';
+                alerted = false;
+            }
+        }
+
+        function updateShop(){
+            alerted = true;
+            shopContainer.style.display='flex';
+
+            userShopContainer.style.display='none';
+            updateShopContainer.style.display='grid';
+        }
+
+        function userShop(){
+            alerted = true;
+            shopContainer.style.display='flex';
+
+            userShopContainer.style.display='grid';
+            updateShopContainer.style.display='none';
+
+            buyHintPotion.onclick = function(){
+                if (coinsValue >= 10){
+                    hintPotionValue ++;
+                    coinsValue -= 10;
+
+                    coinsDisplay.value = coinsValue
+                    hintPotionDisplay.value = hintPotionValue
+
+                    newCoinsDisplay.value = coinsValue
+                    newHintPotionDisplay.value = hintPotionValue
+                } else {
+                    alertContainer2.style.display='flex';
+                    narratorText2.textContent = 'Kamu tidak punya uang';
+
+                    alertContinueButton.onclick = function(){
+                        alertContainer2.style.display='none';
+                    }
+                }
+            }
+            buyToolPotion.onclick = function(){
+                if (coinsValue >= 20){
+                    toolPotionValue ++;
+                    coinsValue -= 20;
+
+                    coinsDisplay.value = coinsValue
+                    toolPotionDisplay.value = toolPotionValue
+
+                    newCoinsDisplay.value = coinsValue
+                    newToolPotionDisplay.value = toolPotionValue
+                } else {
+                    alertContainer2.style.display='flex';
+                    narratorText2.textContent = 'Kamu tidak punya uang';
+
+                    alertContinueButton.onclick = function(){
+                        alertContainer2.style.display='none';
+                    }
+                } 
+            }
+            buyLifePotion.onclick = function(){
+                if (coinsValue >= 30){
+                    lifePotionValue ++;
+                    coinsValue -= 30;
+
+                    coinsDisplay.value = coinsValue
+                    lifePotionDisplay.value = lifePotionValue
+
+                    newCoinsDisplay.value = coinsValue
+                    newLifePotionDisplay.value = lifePotionValue
+                } else {
+                    alertContainer2.style.display='flex';
+                    narratorText2.textContent = 'Kamu tidak punya uang';
+
+                    alertContinueButton.onclick = function(){
+                        alertContainer2.style.display='none';
+                    }
+                }
+            }
+        }
+
+        let username = usernameDisplay.value;
+
+        let alerted = false
+        let position_x = 5;
+        let position_y = 5;
+        avt(position_x,position_y).style.display='block'
+
+        document.onkeydown = checkKey;
+
+        function checkKey(e) {
+
+            e = e || window.event;
+
+            if (e.keyCode == '38' && !(alerted)) {
+                // up arrow
+                if ((position_x == 3 && position_y == 4) || (position_x == 3 && position_y == 8)
+                    || (position_x == 5 && position_y == 4) || (position_x == 5 && position_y == 8)){
+                
+                } else if (position_y != 2){
+                    avt(position_x,position_y).style.display='none';
+                    position_y -= 1;
+                    avt(position_x,position_y).style.display='block';
+                }
+
+            } else if (e.keyCode == '40' && !(alerted)) {
+                // down arrow
+                if ((position_x == 3 && position_y == 2) || (position_x == 3 && position_y == 6)
+                || (position_x == 5 && position_y == 2) || (position_x == 5 && position_y == 6)){
+            
+                } else if (position_y != 8){
+                    avt(position_x,position_y).style.display='none';
+                    position_y += 1;
+                    avt(position_x,position_y).style.display='block';
+                }
+
+            } else if (e.keyCode == '37' && !(alerted)) {
+                // left arrow
+                if ((position_x == 4 && position_y == 3) || (position_x == 4 && position_y == 7)
+                || (position_x == 6 && position_y == 3) || (position_x == 6 && position_y == 7)){
+            
+                } else if (position_x == 2 && position_y == 5){
+                    alert1('Masuk Lobi Sekolah?','homepage')
+                } else if (position_x != 2){
+                    avt(position_x,position_y).style.display='none';
+                    position_x -= 1;
+                    avt(position_x,position_y).style.display='block';
+                }
+
+            }
+            else if (e.keyCode == '39' && !(alerted)){
+                // right arrow
+                if ((position_x == 2 && position_y == 3) || (position_x == 2 && position_y == 7)
+                || (position_x == 4 && position_y == 3) || (position_x == 4 && position_y == 7)){
+            
+                } else if (position_x == 6 && position_y == 5){
+                    if (username == 'kepsek'){
+                        updateShop();
+                    } else {
+                        userShop();
+                    }
+                } else if (position_x != 6){
+                    avt(position_x,position_y).style.display='none';
+                    position_x += 1;
+                    avt(position_x,position_y).style.display='block';
+                }
+            }
+        }
+    </script>
+</body>
+</html>

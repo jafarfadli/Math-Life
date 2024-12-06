@@ -1,0 +1,232 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+/* header */
+.headerContainer{
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+	background-image: url(../assets/darkwoodbg.jpg);
+    background-color: #fff;
+  	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+			0 10px 10px rgba(0,0,0,0.22);
+}
+.itemContainer{
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    border-style: inherit;
+    border-radius: 20px;
+}
+.topLeftContainer{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    margin: 10px;
+    margin-right: auto;
+}
+.topRightContainer{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    margin: 10px;
+    margin-left: auto;
+}
+.itemIcon{
+    width: 60px;
+
+}
+.itemDisplay{
+    font-size: 2em;
+    color: black;
+    width: 2em;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+}
+#coinsDisplay{
+    font-size: 2em;
+    color: black;
+    width: 4em;
+}
+#usernameDisplay{
+    font-size: 2em;
+    color: black;
+    width: 4em;
+}
+.titleContainer{
+    position:absolute;
+    left: 50%;
+    top: 20px;
+    transform: translate(-50%, 0%);
+}
+h1 {
+    font-weight: bold;
+	margin: 0;
+}
+.title{
+    color: white;
+}
+
+
+/* narrator */
+.alertContainer{
+	background-color: #fff;
+	border-radius: 10px;
+  	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+			0 10px 10px rgba(0,0,0,0.22);
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+	width: 300px;
+    padding: 10px;
+	height: fit-content;
+    flex-direction: column;
+}
+.toolContainer{
+    width: 800px;
+}
+.alertButtonContainer{
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-top: 10px;
+}
+.alertButton{
+	border-style: inherit;
+	border-radius: 20px;
+	background-image: url(../assets/darkwoodbg.jpg);
+	color: #FFFFFF;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 12px 45px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+}
+.alertText{
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(75, 40, 15);
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.text{
+    color: white;
+}
+body {
+	background: url(../assets/wall.jpg);
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+}
+
+/* quiz */
+.quizContainer{
+	/* background-color: #fff; */
+    background-image: url(../assets/blackboard.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+  	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+			0 10px 10px rgba(0,0,0,0.22);
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+	width: 800px;
+    height: 468px;
+    padding: 10px;
+    flex-direction: column;
+}
+.headerQuizContainer{
+    margin: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.wincountContainer{
+    border-radius: 20px;
+  	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+			0 10px 10px rgba(0,0,0,0.22);
+    height: 40px;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: 40px;
+    grid-template-columns: 50px 50px 50px;
+}
+.wincountGrid{
+    background-color: rgb(189, 72, 25);
+    border-style: solid;
+    border-color: #fff;
+    /* background-color: rgb(0, 216, 151); */
+}
+#wincount01{
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+#wincount03{
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+.clockIcon{
+    height: 50px;
+}
+.timeContainer{
+    background-color: #fff;
+    border-radius: 20px;
+  	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+			0 10px 10px rgba(0,0,0,0.22);
+    position: absolute;
+    padding-left: 10px;
+    left: 325px;
+
+	width: 150px;
+	height: fit-content;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+#time{
+    margin: auto;
+    color: black;
+}
+.lifecountContainer{
+    margin-left: auto;
+}
+.heartIcon{
+    height: 50px;
+}
+.problemQuizContainer{ 
+    margin-top: 10px; 
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-bottom: 10px;
+    height: 200px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#quizProblem{
+    color: #fff;
+}
+.answerQuizContainer{
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.answerText{
+	background-color: transparent;
+    color: #fff;
+	border: none;
+    border-bottom: solid;
+    margin: auto;
+	padding: 12px 15px;
+	width: 350px;
+}
+#quizTool{
+    width: 800px;
+}
+#toolCloseButton{
+    margin: auto;
+}
